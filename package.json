@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-types-generator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple CLI tool for generating types for react-i18next",
   "bin": "lib/react-i18next-types-generator.js",
   "files": [
@@ -11,7 +11,7 @@
     "lint": "eslint src",
     "clean": "rimraf lib",
     "build": "yarn run clean && yarn run compile",
-    "dev": "yarn run build && node lib/react-i18next-types-generator -i .testdata -o .testdata/index.d.ts --watch",
+    "dev": "yarn run build && node lib/react-i18next-types-generator -i .testdata -o .testdata/index.d.ts",
     "prepublishOnly": "yarn run lint && yarn run build"
   },
   "publishConfig": {

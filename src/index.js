@@ -48,11 +48,11 @@ const outputPath = path.resolve(argv.output);
 const generate = createGenerator(
   inputPath,
   outputPath,
-  argv.importPath || argv.input,
+  argv.importPath || path.relative(path.dirname(argv.output), argv.input),
   argv.exportReactI18next
 );
 
-mkdirp.sync(path.resolve());
+mkdirp.sync(path.dirname(outputPath));
 generate();
 
 if (argv.watch) {

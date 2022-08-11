@@ -6,6 +6,10 @@ const addSpace = (amount) => {
   return (s) => new Array(amount + 1).join(" ") + s;
 };
 
+const normalizeModulePath = (modulePath) => {
+  return modulePath.substr(0, 3) !== "../" ? `./${modulePath}` : modulePath;
+};
+
 export default (inputPath, outputPath, importPath, exportReactI18next) => () => {
   const files = fs.readdirSync(path.resolve(inputPath));
   const outputImports = [];
@@ -16,7 +20,7 @@ export default (inputPath, outputPath, importPath, exportReactI18next) => () => 
     if (extName === ".json") {
       const baseName = path.basename(fileName, extName);
       const normalizedName = camelCase(baseName);
-      const modulePath = path.join(importPath, fileName);
+      const modulePath = normalizeModulePath(path.join(importPath, fileName));
       outputImports.push(`import ${normalizedName} from '${modulePath}';`);
       outputResourceItems.push(`'${baseName}': typeof ${normalizedName};`);
     }
