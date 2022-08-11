@@ -46,6 +46,7 @@ const generate = createGenerator(
 );
 
 mkdirp.sync(path.resolve());
+generate();
 
 if (argv.watch) {
   watch(inputPath, { recursive: true }, (evt, fileName) => {
@@ -56,6 +57,4 @@ if (argv.watch) {
       generate();
     }
   });
-} else {
-  generate();
 }
