@@ -38,7 +38,7 @@ const { argv } = yargs
       alias: "r",
       type: "boolean",
       description: "Add export directive for all react-i18next types",
-      default: false,
+      default: true,
     },
   });
 
