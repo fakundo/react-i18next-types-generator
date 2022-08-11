@@ -6,7 +6,7 @@ const addSpace = (amount) => {
   return (s) => new Array(amount + 1).join(" ") + s;
 };
 
-export default (inputPath, outputPath, importPath) => () => {
+export default (inputPath, outputPath, importPath, exportReactI18next) => () => {
   const files = fs.readdirSync(path.resolve(inputPath));
   const outputImports = [];
   const outputResourceItems = [];
@@ -16,16 +16,19 @@ export default (inputPath, outputPath, importPath) => () => {
     if (extName === ".json") {
       const baseName = path.basename(fileName, extName);
       const normalizedName = camelCase(baseName);
-      const modulePath = path.join(importPath || inputPath, fileName);
+      const modulePath = path.join(importPath, fileName);
       outputImports.push(`import ${normalizedName} from '${modulePath}';`);
       outputResourceItems.push(`'${baseName}': typeof ${normalizedName};`);
     }
   });
 
-  const output = `
-export * from 'react-i18next';
+  let output = "";
 
-${outputImports.join("\n")}
+  if (exportReactI18next) {
+    output += "export * from 'react-i18next';\n\n";
+  }
+
+  output += `${outputImports.join("\n")}
 
 declare module 'react-i18next' {
   interface Resources {
@@ -40,8 +43,7 @@ declare module 'react-i18next' {
 ${outputResourceItems.map(addSpace(6)).join("\n")}
     };
   }
-}
-`;
+}`;
 
   fs.writeFileSync(path.resolve(outputPath), output);
 

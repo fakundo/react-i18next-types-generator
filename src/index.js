@@ -34,6 +34,12 @@ const { argv } = yargs
       description: "Watch directory changes",
       default: false,
     },
+    exportReactI18next: {
+      alias: "r",
+      type: "boolean",
+      description: "Add export directive for all react-i18next types",
+      default: false,
+    },
   });
 
 const inputPath = path.resolve(argv.input);
@@ -42,7 +48,8 @@ const outputPath = path.resolve(argv.output);
 const generate = createGenerator(
   inputPath,
   outputPath,
-  argv.importPath || argv.input
+  argv.importPath || argv.input,
+  argv.exportReactI18next
 );
 
 mkdirp.sync(path.resolve());
