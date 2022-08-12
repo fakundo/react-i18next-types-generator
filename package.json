@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-types-generator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple CLI tool for generating types for react-i18next",
   "bin": "lib/react-i18next-types-generator.js",
   "files": [
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fakundo/react-localized"
+    "url": "https://github.com/fakundo/react-i18next-types-generator"
   },
   "author": "Roman Samoylov (https://github.com/fakundo)",
   "license": "UNLICENSED",
