@@ -7,7 +7,8 @@ const addSpace = (amount) => {
 };
 
 const normalizeModulePath = (modulePath) => {
-  return modulePath.substr(0, 3) !== "../" ? `./${modulePath}` : modulePath;
+  const fixedPath = modulePath.replace(/\\/g, "/");
+  return fixedPath.substr(0, 3) !== "../" ? `./${fixedPath}` : fixedPath;
 };
 
 export default (inputPath, outputPath, importPath, exportReactI18next) => () => {

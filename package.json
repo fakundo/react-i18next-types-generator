@@ -1,6 +1,6 @@
 {
   "name": "react-i18next-types-generator",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Simple CLI tool for generating types for react-i18next",
   "keywords": [
     "react-i18next",
